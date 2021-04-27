@@ -5,10 +5,6 @@ import "./ExpenseItem.css";
 
 const ExpenseItem = ({ date, title, amount }) => {
   const [title_, setTitle] = useState(title);
-  const clicked = () => {
-    console.log("Clicked");
-    setTitle("Updated!");
-  };
   return (
     <Card className="expense-item">
       <div>
@@ -17,7 +13,6 @@ const ExpenseItem = ({ date, title, amount }) => {
       <div className="expense-item__description">
         <h2>{title_}</h2>
         <div className="expense-item__price">{amount}</div>
-        <button onClick={clicked}>Click Here</button>
       </div>
     </Card>
   );
