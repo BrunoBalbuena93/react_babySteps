@@ -1,0 +1,28 @@
+.formular__controls {
+    gap: 1rem;
+    margin-bottom: 1rem;
+    text-align: left;
+    width: 100%;
+  }
+  
+  .formular__control label {
+    padding: 0.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    display: block;
+}
+
+.formular__control input {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 95%;
+    max-width: 100%;
+  }
+  
+  .formular__actions {
+    text-align: right;
+  }
+  
