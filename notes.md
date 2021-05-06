@@ -5,9 +5,9 @@
 - Component based
 - Declarative paradigm
 
-##### Wrapper
+##### Templates
 
-You can create a component that works as a template for other things. In the example, the component Card is a wrapper for the blocks of both Expenses component and ExpenseItem components
+You can create a component that works as a template for other things. In the example _task-manager_, the component Card is a "wrapper for the blocks of both Expenses component and ExpenseItem components
 
 #### UseState
 
@@ -49,3 +49,40 @@ In the past example, the class itself is defined, and the "possible extras" like
 ##### CSS Modules
 
 By default, react enables the modular containerization of the styles, this means that if there is an import of a `.css` file, it can be replaced with a `.module.css` and being imported as an object, this means, the stylesheet is just renamed but the way to use it goes as `import styles from './*.module.css` instead of `import './*.css'`, and the styles are declared by `styles.[name of the class]`
+
+##### Actual Wrappers
+
+React has its own wrappers (under React.Fragment) which are elements that are only used to generate the appropiate JSX output, but they are not rendered in the DOM.
+
+##### React Portals
+
+As the name suggests, the portals are a component of _react-dom_ which are used to address a certain component to an object in the DOM. The syntax for such thing is the following:
+
+```
+{ReactDOM.}createPortal([Component to be displayed], [document element where it will be hung]);
+
+ReactDOM.createPortal(<Backdrop onClick={some_function} />, document.getElementById('backdrop'))
+```
+
+##### React Refs
+
+Just like the portals are able to hung components to specific elements of the dom, the refs are used to hang something to a component/part of the dom; it works to get access to data via the html itself and it is referenced
+
+##### Effects / Side Effects
+
+The effects are the tasks that does not relate to rendering something to the screen. Think it as the services in Angular, it is used for HTTP requests, timers, etc.
+
+Using the effects goes with the syntax `useEffect(() => {}, [dependencies])`, where the function which should run is the first argument, and the dependencies which trigger such function are the second argument aranged in an array.
+
+##### Reducers
+
+It is a replacement for useState, think of it as a useState on steroids. To understand how it works we can take a closer look to the syntax
+
+`const [state, dispatchFn] = userReducer(reducerFn, initialState, initFn)`
+
+- State: Just like useState, it is the snapshot of the current state
+- dispatchFn: Function to update the snapshot. This function works different to useState since it triggers an action, not a reassignment.
+- reducerFn: Gets the latest snapshot and gets the action dispatched from dispatchFn.
+- initialState: Initial value for the snapshot
+
+##### Context

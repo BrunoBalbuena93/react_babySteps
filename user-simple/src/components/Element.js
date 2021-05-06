@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
-const Element = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+const Element = ({ user }) => {
+  return (
+    <div>
+      {user.username} Age: {user.age} YO
+    </div>
+  );
+};
 
-export default Element
+export default Element;
