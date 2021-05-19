@@ -86,3 +86,9 @@ It is a replacement for useState, think of it as a useState on steroids. To unde
 - initialState: Initial value for the snapshot
 
 ##### Context
+
+The use of context is a tool which works as a "global variable", as global as the user decides where to instance it. It should follow the respective structure (it usually works as a JS object wrapped in a React Structure). It can point to anything, from variables to functions.
+
+##### Custom Hooks
+
+Functions like the regular hooks which can contain stateful logic
