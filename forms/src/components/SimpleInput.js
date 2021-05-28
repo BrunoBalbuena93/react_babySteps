@@ -8,7 +8,7 @@ const SimpleInput = (props) => {
     hasError: nameError,
     valueChange: nameChange,
     inputBlur: nameBlur,
-    reset: resetName
+    reset: resetName,
   } = useInput((x) => x.trim() !== "");
 
   const {
@@ -17,8 +17,9 @@ const SimpleInput = (props) => {
     hasError: emailError,
     valueChange: emailChange,
     inputBlur: emailBlur,
-    reset: resetEmail
-  } = useInput((x) => x.includes('@'));
+    reset: resetEmail,
+  } = useInput((x) => x.includes("@"));
+
   let formIsValid = Boolean(nameValid && emailValid);
 
   const formSubmission = (event) => {
@@ -31,9 +32,7 @@ const SimpleInput = (props) => {
     resetEmail();
   };
 
-  const nameInputClasses = nameError
-    ? "form-control invalid"
-    : "form-control";
+  const nameInputClasses = nameError ? "form-control invalid" : "form-control";
   const emailInputClasses = emailError
     ? "form-control invalid"
     : "form-control";
@@ -49,9 +48,7 @@ const SimpleInput = (props) => {
           onBlur={nameBlur}
           value={enteredName}
         />
-        {nameError && (
-          <p className="error-text">Name must not be empty</p>
-        )}
+        {nameError && <p className="error-text">Name must not be empty</p>}
       </div>
       <div className={emailInputClasses}>
         <label htmlFor="email">Your email</label>
@@ -62,12 +59,10 @@ const SimpleInput = (props) => {
           onBlur={emailBlur}
           value={email}
         />
-        {emailValid && (
-          <p className="error-text">Email must not be empty</p>
-        )}
+        {emailError && <p className="error-text">Email must not be empty</p>}
       </div>
       <div className="form-actions">
-        <button>Submit</button>
+        <button disabled={!formIsValid}>Submit</button>
       </div>
     </form>
   );
