@@ -7,6 +7,7 @@ import classes from "./Cart.module.css";
 
 const Cart = (props) => {
   const [checked, setChecked] = useState(false);
+  const [isSubmiting, setIsSubmiting] = useState(false);
 
   const cartCtx = useContext(CartContext);
 
@@ -15,6 +16,16 @@ const Cart = (props) => {
 
   const cartItemRemove = (id) => {
     cartCtx.removeItem(id);
+  };
+
+  const submitOrder = (userData) => {
+    setIsSubmiting(true);
+    fetch("https://angular-course-85ad3.firebaseio.com/orders.json", {
+      method: "POST",
+      body: JSON.stringify({ user: userData, order: cartCtx.items }),
+    }).then((response) => {
+      setIsSubmiting(false);
+    });
   };
 
   const cartItemAdd = (item) => {
@@ -60,7 +71,14 @@ const Cart = (props) => {
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
-      {checked ? <Checkout onCancel={props.onClose}></Checkout> : ModalActions}
+      {checked ? (
+        <Checkout
+          onCancel={props.onClose}
+          onSubmission={submitOrder}
+        ></Checkout>
+      ) : (
+        ModalActions
+      )}
     </Modal>
   );
 };
