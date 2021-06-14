@@ -89,6 +89,54 @@ It is a replacement for useState, think of it as a useState on steroids. To unde
 
 The use of context is a tool which works as a "global variable", as global as the user decides where to instance it. It should follow the respective structure (it usually works as a JS object wrapped in a React Structure). It can point to anything, from variables to functions.
 
+As it has a lot of advantages, it also brings a few disadvantages:
+
+There is no complex setup: You can end up nesting many context (as shown below):
+
+```
+return (
+    <AuthContextProvider>
+        <ThemeContextProvider>
+            <PreferencesContextProvider>
+            </PreferencesContextProvider>
+        </ThemeContextProvider>
+    </AuthContextProvider>
+)
+```
+
+This nesting could lead to a heavy re-rendering
+
+It is also suggested to be used if the changes are _not high frequency_ changes, i.e., the performance can be affected if the complexity and update-rate of the app grows.
+
 ##### Custom Hooks
 
 Functions like the regular hooks which can contain stateful logic
+
+### Redux
+
+State management system for cross-component or app-wide states, i.e., similar to the context, it gives a general access to a state within the web application.
+
+To understand how redux works we need to classify the _states_ into three kinds:
+
+1. **Local State:** It belongs to a single component and it is only used within itself, f.e., a user input or a button that is listening to certain toogle, etc. Usually handled with _useState() / useReducer()_.
+
+2. **Cross-component State:** A state that affects multiple components, this is where the _props-drilling_ comes in, so the data is shared across components. An example for this would be a control of a modal overlay, pop-up window which is triggered by a button.
+
+3. **App wide:** Affects all components of an application. An example for this is the authentication. The alternative here would also be props drilling.
+
+#### How it works?
+
+ude
+It is a state machine rebranded as _store_. The data is stored there and the components access to it via subscriptions which provide slices (copies) of the data, and when storing is needed, a reducer function is used with an action triggered by a component.
+
+###### The reducer function
+
+This function is called by the redux library and it receives two parameters and produces a single output: `Old State + Dispatched Action -> New state object`.
+
+#### Redux Toolkit
+
+This is a tool to make redux more "comprehensible" and handleable. There are a few tricks worth metioning, for instance, it is installed/imported as `@reduxjs/toolkit`.
+
+###### Slices
+
+The function `createSlice()` is a way to declare a _small piece_ of the general redux state, it should have a name, initial state value and a group of reducers to handle the state given. The actions are accessed as `.actions` of the slice; these are the ones that should be called with `useDispatch` within the components
