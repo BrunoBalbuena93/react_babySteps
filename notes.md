@@ -141,3 +141,10 @@ This is a tool to make redux more "comprehensible" and handleable. There are a f
 
 The function `createSlice()` is a way to declare a _small piece_ of the general redux state, it should have a name, initial state value and a group of reducers to handle the state given. The actions are accessed as `.actions` of the slice; these are the ones that should be called with `useDispatch` within the components
 
+### Deploying
+
+A few things to do _before_ building the app:
+
+- Test Code
+
+- Optimize Code
