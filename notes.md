@@ -148,3 +148,7 @@ A few things to do _before_ building the app:
 - Test Code
 
 - Optimize Code
+
+###### Lazy Loading
+
+This is the way to configure a partial load of the page to optimise it.
